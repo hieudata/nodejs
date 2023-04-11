@@ -1,0 +1,31 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+<%- include("./partials/nav.ejs") %>
+
+<div class="blogs content">
+    <h2>All Blogs</h2>
+    <table style="text-align: left; width: 100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        <% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <tr>
+                    <td><%= blog.id %></td>
+                    <td><%= blog.name %></td>
+                    <td><%= blog.address %></td>
+                </tr>
+            <% }) %>
+        <% } else { %>
+            <p>There are no blogs to display...</p>
+        <% } %>
+    </table>
+</div>
+
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

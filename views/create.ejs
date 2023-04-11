@@ -1,0 +1,20 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+      <div class="create-blog content">
+          <form action="/save" method="post">
+          <label for="name">Name:
+          <input type="text" id="name" name="name" required></label>
+          <label for="address">Address:
+          <input type="text" id="address" name="address" required></label>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+      <%- include("./partials/footer.ejs") %>
+  </body>
+
+</html>
