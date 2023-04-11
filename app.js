@@ -75,13 +75,32 @@ app.post('/save',function(req,res){
 })
 
 // Update
-app.get('/update', (req, res) => {
-   res.render('update', { title: 'Update a new blog' });
+app.get('/edit/:id', (req, res) => {
+   let id = req.params.id;
+
+   connection.query('SELECT * FROM node WHERE id = ' + id, function(err, rows, fields) {
+      if(err) throw err
+
+      // if user not found
+      if (rows.length <= 0) {
+         res.redirect('/')
+      }
+      // if book found
+      else {
+         // render to edit.ejs
+         res.render('edit', {
+            title: 'Edit Blog',
+            id: rows[0].id,
+            name: rows[0].name,
+            address: rows[0].address
+         });
+      }
+   })
 });
 
-app.post('/:id',function(req,res){
+app.post('/update/:id',function(req,res){
 
-   let id = req.query.id
+   let id = req.params.id
    let name = req.body.name;
    let address = req.body.address;
    connection.query("UPDATE node SET name = ?, address = ?  WHERE id = ?",[name,address,id],function(err,rows,fields){
@@ -97,16 +116,16 @@ app.post('/:id',function(req,res){
 })
 
 // Delete
-app.get('/delete', (req, res) => {
+app.get('/delete/:id', (req, res) => {
 
-   let id = req.query.id;
+   let id = req.params.id;
 
    connection.query("delete from node where id=?", [id], function (err, rows, fields) {
 
       if (!!err) {
          console.log('Error', +err);
       } else {
-         res.status(404).render('404', { title: '404' });
+         res.redirect('/')
       }
 
    });
