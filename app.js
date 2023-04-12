@@ -21,23 +21,6 @@ app.set('view engine', 'ejs');
 //   console.log("Connected!");
 // });
 
-let stmt = `INSERT INTO node_ejs(name,address)  VALUES ?  `;
-let todos = [
-   ['Insert multiple rows at a time', false],
-   ['It should work perfectly', true]
-];
-
-// execute the insert statment
-// let sql = `SELECT * FROM node`;
-// connection.query(sql, (error, results, fields) => {
-//    if (error) {
-//       return console.error(error.message);
-//    }
-//    console.log(results);
-// });
-
-// connection.end();
-
 app.get('/', (req, res) => {
    let sql = `SELECT * FROM node`;
    connection.query(sql, (error, results, fields) => {
