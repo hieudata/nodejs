@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
         <% if (blogs.length > 0) { %>
             <% blogs.forEach(blog => { %>
@@ -18,6 +19,10 @@
                     <td><%= blog.id %></td>
                     <td><%= blog.name %></td>
                     <td><%= blog.address %></td>
+                    <td>
+                        <a href="http://localhost:3000/edit/<%= blog.id %>">Edit</a>
+                        <a href="http://localhost:3000/delete/<%= blog.id %>">Delete</a>
+                    </td>
                 </tr>
             <% }) %>
         <% } else { %>
